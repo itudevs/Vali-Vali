@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        /* Global reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .messageNo {
+            font-size: 1.5rem;
+            color: #0059ff;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ffeff6; /* Soft pink background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Header styling */
+        .ask {
+            font-size: 3rem;
+            color: #e60073;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.6);
+        }
+        .askNo {
+            font-size: 2.5rem;
+            color: #0059ff;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Heart animation */
+        .heart {
+            width: 150px;
+            height: 150px;
+            background-color: #ff4d88;
+            transform: rotate(-45deg);
+            position: relative;
+            animation: bounce 2s infinite ease-in-out;
+            margin-bottom: 30px;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #ff4d88;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -75px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 75px;
+            top: 0;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0) rotate(-45deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-45deg);
+            }
+        }
+
+        /* Button Styling */
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            color: #fff;
+            background: #e60073;
+            border: 3px solid #ff66b2;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease;
+            text-align: center;
+        }
+
+        /* Button hover effect */
+        .btn:hover {
+            background-color: #ff66b2;
+            transform: scale(1.1);
+        }
+
+        /* Button active state */
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Message styling */
+        .message {
+            font-size: 1.5rem;
+            color: #ff4d88;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        #imga {
+            width: 10rem;
+            height:10rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Heart Shape -->
+    <div class="hidden"><img id="imga" src="NoShesaid.jpeg" alt="she said no"></div>
+    <div class="heart"></div>
+
+    <!-- Main Heading -->
+    <h1 class="ask">Will You Be My Valentine T❤️?</h1>
+
+    <!-- Button to Ask -->
+    <button class="btn" onclick="showMessage()">Yes, I Will!</button>
+    <button class="btn" id="no" style="margin-top: 1rem;" onclick="showMessageNo()">No</button>
+    <!-- Hidden Message -->
+    <p class="message" id="message" style="display: none;">Yeee Cant wait just glad to be together baby </p>
+    <p class="messageNo" id="messageNo" style="display: none;">Dammit dammit dammit what the dammit </p>
+    <audio id="dammit" src="./dammit.mp3" preload="auto"></audio>
+    <!-- Include canvas-confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
+
+    <script>
+        // Function to display the message when the button is clicked
+        function showMessage() {
+            // Show the message and hide the button
+            document.getElementById('message').style.display = 'block';
+            document.querySelector('.btn').style.display = 'none';
+            document.querySelector('#no').style.display = 'none';
+
+            // Trigger confetti animation when "Yes" is clicked
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { x: 0.5, y: 0.5 },
+                colors: ['#ff4d88', '#ff66b2', '#e60073']
+            });
+        }
+
+        function showMessageNo() {
+            // Show the message and hide the button
+            document.getElementById('messageNo').style.display = 'block';
+            document.querySelector('#no').style.display = 'none';
+    
+            document.querySelector('.btn').style.display = 'none';
+
+            document.querySelector('.ask').style.color = '#0059ff';
+            document.querySelector('.heart').style.display = 'none';
+            document.querySelector('.hidden').style.display = 'block';
+            document.getElementById('dammit').play() = 'dammit.mp3';
+        }
+    </script>
+
+</body>
+</html>
